@@ -1,0 +1,68 @@
+TestFileinout
+
+package shiajian10;
+import java.io.*;
+import java.util.Scanner;
+public class TestFileinout {
+public static void main(String[] args) { 
+	// TODO Auto-generated method stub 
+	File file = new File ("D://java//lianxil1.txt") ; //file指向lianxil 
+	try {
+   FileOutputStream out = new FileOutputStream (file);// 〃创建输出流 out对象指向file 
+//	FileOutputStream out = new FileOutputStream(file, true); 〃下次启动时不想覆盖，力口上true
+Scanner sc = new Scanner(System.in); 
+String s ="";
+System. out.println ("请输入内容:");
+s = sc.nextLine();//〃逐行读取输入内容回车为界
+while (! s. equals ("finish")) { //〃当最后输入的不是finish时
+byte [] c = s.getBytes (); //〃调用gecByces方法把输入的字符串解析成字节，并存入数组c中 
+out.write(c);// 把数组C中的内容写入指定文件中
+out .write ( (int) '\r');//〃回车 
+out .write ((int) '\n');//〃换行
+s = sc.nextLine ();//〃接着读,直到finish出现 
+}
+sc.close ();//〃关闭流 
+out. close (); //〃关闭流
+FileInputStream in = new FileInputStream(file); //〃打开输入流 in对象指向file 
+int a; 
+while((a = in.read())!=-1){
+System. out.print ( (char) a); //〃当文件中还有数据的时候，将其输出
+}
+in. close (); //〃关闭流
+}catch( IOException e) {
+        	 System.out.println("输入输出错误！");
+         
+       }
+	}
+}
+
+Test
+
+package shiajian10;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Test {
+public static void main(String[] args) { 
+	Scanner sc = new Scanner(System.in);
+	try{
+System.out.println ("请输入被除数：");
+double dividend = sc.nextDouble();
+System. out.println ("请输入除数" );
+double divid = sc.nextDouble(); 
+if(divid == 0){
+throw new ArithmeticException("除数不能为0"); }
+double i=(dividend/divid);
+System.out.println ("二者的商为："+ i);
+}catch(InputMismatchException el){
+	System. out.println ("请输入数字!");
+}catch (ArithmeticException e2) {
+System. out.println ("请输入不是0的数字！");
+}finally{
+System.out.println("不管怎么说,谢谢参与！");
+   }
+  }
+}
+
+
+
